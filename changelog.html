@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dinger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="What Tinder should have been">
+    <meta name="apple-mobile-web-app-title" content="Dinger">
+    <meta name="application-name" content="Dinger">
+    <meta name="theme-color" content="#263238">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link href="static/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="static/app.css" rel="stylesheet">
+    <link href="static/app-theme.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300italic,100,100italic,300" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]><script src="static/html5shiv.min.js"></script><![endif]-->
+  </head>
+  <body data-target=".content-nav">
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="span5">
+            <h1>Dinger</h1>
+          </div>
+          <div class="span7">
+            <menu>
+              <ul>
+                <li><a href="#download" class="menu download">Download latest</a></li>
+                <li><a href="http://github.com/stoyicker/dinger" data-title="View GitHub Project" class="menu github"><img src="static/icon-github.png" alt="GitHub"/></a></li>
+                <li><a href="https://www.linkedin.com/in/jorgediazbenitosoriano/" data-title="Jorge Antonio Diaz-Benito Soriano on LinkedIn" class="menu square" target="_blank"><img src="static/icon-linkedin.png" alt="Check out my profile on LinkedIn!"/></a></li>
+              </ul>
+            </menu>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section id="subtitle">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <h2>What Tinder should have been</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="body">
+      <div class="container">
+        <div class="row">
+          <div class="span9">
+            <section>
+              <h3 class="version-tag">Changelog</h3>
+              <p class="changelog"></p>
+              <p>The source code to Dinger, its documentation and this website are <a href="http://github.com/stoyicker/dinger">available on GitHub</a>.</p>
+            </section>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span12 logo">
+            <a href="https://www.linkedin.com/in/jorgediazbenitosoriano/" data-title="Jorge Antonio Diaz-Benito Soriano on LinkedIn" target="_blank"><img src="static/logo-linkedin.png" alt="Check out my profile on LinkedIn!"/></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="static/bootstrap.min.js"></script>
+    <script src="static/jquery.smooth-scroll.min.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=kotlin&amp;skin=desert"></script>
+    <script src="https://cdn.rawgit.com/showdownjs/showdown/1.8.2/dist/showdown.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        // Spy on scroll position for real-time updating of current section.
+        $('body').scrollspy();
+        // Use smooth-scroll for internal links.
+        $('a').smoothScroll();
+        // Enable tooltips on the header nav image items.
+        $('.menu').tooltip({
+          placement: 'bottom',
+          trigger: 'hover',
+          container: 'body',
+          delay: {
+            show: 500,
+            hide: 0
+          }
+        });
+        $.getJSON('https://stoyicker.github.io/dinger/version.json', function(data) {
+          $('.version-tag').append(' ' + data.version);
+        });
+        $.getJSON('https://api.github.com/repos/stoyicker/dinger/releases/latest', function(data) {
+          $('.changelog').text(data.body.substring(data.body.indexOf("CHANGELOG**:\n\n") + "CHANGELOG**:\n\n".length));
+          $('.changelog').css('white-space', 'pre-line');
+        });
+      });
+    </script>
+  </body>
+</html>

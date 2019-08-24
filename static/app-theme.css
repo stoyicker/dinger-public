@@ -1,0 +1,23 @@
+/*** Primary ***/
+
+header,
+#subtitle,
+a.dl {
+  background-color: #ffab40;
+}
+
+/*** One step left on the monochromatic scale ***/
+
+a {
+  color: #e6af68;
+}
+
+/*** Three steps left on the monochromatic scale ***/
+
+a:hover {
+  color: #ccad85;
+}
+
+pre {
+  background-color: #333;
+}
